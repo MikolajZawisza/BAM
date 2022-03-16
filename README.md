@@ -2,4 +2,4 @@
 
 Politechnika Krakowska
 - Cyberbezpieczeństwo - Studia 2 stopnia
-- Laboratoria 1-6
+- Laboratoria 1-7

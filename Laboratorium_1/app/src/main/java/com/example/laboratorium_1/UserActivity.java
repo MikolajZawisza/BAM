@@ -13,7 +13,7 @@ public class UserActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user);
 
-        String mess = getIntent().getStringExtra("test");
+        String mess = getIntent().getStringExtra("data");
         Toast.makeText(this, mess, Toast.LENGTH_SHORT).show();
 
     }
