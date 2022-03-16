@@ -9,7 +9,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Laboratorium_1">
-        <service android:name=".SimpleService"></service>
+        <receiver
+            android:name=".NumberReceiver"
+            android:enabled="true"
+            android:exported="true"></receiver>
+
+        <service android:name=".SimpleService" />
+
         <activity
             android:name=".UserActivity"
             android:exported="false" />

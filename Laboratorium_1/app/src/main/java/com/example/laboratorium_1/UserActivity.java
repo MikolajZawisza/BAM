@@ -40,7 +40,5 @@ public class UserActivity extends Activity {
                 stopService(service);
             }
         });
-
-
     }
 }
