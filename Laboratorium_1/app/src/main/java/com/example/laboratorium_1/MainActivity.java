@@ -25,7 +25,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String enteredData = textInsertText.getText().toString();
-
                 Intent intent = new Intent (MainActivity.this, UserActivity.class);
                 intent.putExtra("data", enteredData);
                 startActivity(intent);
