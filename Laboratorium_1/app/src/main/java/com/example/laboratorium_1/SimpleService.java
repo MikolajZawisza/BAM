@@ -15,6 +15,7 @@ import java.util.TimerTask;
 public class SimpleService extends Service {
 
     Timer t;
+    String nazwa_uzytkownika = "Jan"; // Skąd mam brać tą nazwę użytkownika?
 
     @Nullable
     @Override
@@ -26,8 +27,12 @@ public class SimpleService extends Service {
     public int onStartCommand(Intent intent, int flags, int startId) {
 
         Toast.makeText(this, "Service is Working", Toast.LENGTH_LONG).show();
-
         t = new Timer();
+
+        Intent new_intent = new Intent (SimpleService.this, NumberReceiver.class);
+        new_intent.putExtra("nazwa", nazwa_uzytkownika);
+        sendBroadcast(new_intent);
+
         BetterTimer();
         return super.onStartCommand(intent, flags, startId);
     }
@@ -47,9 +52,20 @@ public class SimpleService extends Service {
     }
 
     public void onDestroy(){
+
+        /*
+            Intent some_intent = new Intent (SimpleService.this, NumberReceiver.class);
+            some_intent.putExtra("time", time);
+            sendBroadcast(some_intent);
+           */
+
             Toast.makeText(this, "Service Destroyed", Toast.LENGTH_SHORT).show();
+
             t.cancel();
             t.purge();
+
+            // unregisterReceiver(NumberReceiver); // TODO
+
         super.onDestroy();
     }
 }
