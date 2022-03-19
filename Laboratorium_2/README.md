@@ -1,7 +1,3 @@
-# Bezpieczeństwo Aplikacji Mobilnych
+# Laboratorium 02
 
-Politechnika Krakowska
-- Cyberbezpieczeństwo - Studia 2 stopnia
-
-- Laboratorium polegało na modyfikacji pliku .apk
-- Kod w repozytorium niewymagany
+- Laboratorium polegało na modyfikacji pliku ".apk". Kod w repozytorium nie był wymagany.

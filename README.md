@@ -4,7 +4,7 @@ Politechnika Krakowska
 - Cyberbezpieczeństwo - Studia 2 stopnia
 
 - Laboratorium 1 (Niedokończone - Implementacja bazy danych)
-- Laboratorium 2
+- Laboratorium 2 (Ukończone - Kod w repo niewymagany)
 - Laboratorium 3
 - Laboratorium 4
 - Laboratorium 5
