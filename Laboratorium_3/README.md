@@ -1,5 +1,5 @@
 # Laboratorium 03
 
-- Implementacja obsługi GET request x
-- Implementacja odczytu stanu sieci x
-- Implementacja odczytu kontaktów użytkownika x
+- Implementacja obsługi GET request ✓
+- Implementacja odczytu stanu sieci ✓
+- Implementacja odczytu kontaktów użytkownika ✓
