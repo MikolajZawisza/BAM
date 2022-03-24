@@ -9,17 +9,21 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import android.util.Log;
 import android.widget.Button;
-
-
+import android.content.IntentFilter;
+import android.net.ConnectivityManager;
 
 public class MainActivity extends AppCompatActivity {
 
     Button get_request;
+    private final NetworkReceiver NetworkReceiver = new NetworkReceiver();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        registerReceiver(NetworkReceiver, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
 
         get_request = (Button) findViewById(R.id.get_request);
         get_request.setOnClickListener(new View.OnClickListener() {
