@@ -1,5 +1,6 @@
 package com.example.laboratorium_3;
 
+// Normal
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -12,10 +13,21 @@ import android.widget.Button;
 import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 
+//Dangerous
+import android.content.ContentResolver;
+import android.database.Cursor;
+import android.provider.ContactsContract;
+import android.Manifest;
+import androidx.core.app.ActivityCompat;
+import android.content.pm.PackageManager;
+import android.widget.Toast;
+import androidx.annotation.NonNull;
+
 public class MainActivity extends AppCompatActivity {
 
     Button get_request;
     private final NetworkReceiver NetworkReceiver = new NetworkReceiver();
+    int READ_CONTACTS_PERMISSION_REQUEST_CODE = 100;
 
 
     @Override
@@ -26,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
         registerReceiver(NetworkReceiver, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
 
         get_request = (Button) findViewById(R.id.get_request);
+
         get_request.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -50,9 +63,6 @@ public class MainActivity extends AppCompatActivity {
                             con.setConnectTimeout(5000);
                             con.setReadTimeout(5000);
 
-                            // 8. Reading the response
-                            int status = con.getResponseCode();
-
                             BufferedReader in = new BufferedReader(
                                     new InputStreamReader(con.getInputStream()));
                             String inputLine;
@@ -74,5 +84,40 @@ public class MainActivity extends AppCompatActivity {
                 t.start();
             }
         });
+
+    }
+
+    public void getContacts(View view) {
+        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_CONTACTS},READ_CONTACTS_PERMISSION_REQUEST_CODE);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == READ_CONTACTS_PERMISSION_REQUEST_CODE) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+                ContentResolver contentResolver = getContentResolver();
+                Cursor cursor = contentResolver.query(ContactsContract.Contacts.CONTENT_URI,null,null,null,ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME + " ASC");
+
+                while (cursor.moveToNext()) {
+                    String contactId = cursor.getString(cursor.getColumnIndexOrThrow(ContactsContract.Contacts._ID));
+                    String displayName =cursor.getString(cursor.getColumnIndexOrThrow(ContactsContract.Contacts.DISPLAY_NAME));
+                    Log.d("Kontakty", "Kontakt nr. " + contactId + ": " + displayName);
+                }
+                cursor.close();
+            }
+
+            else {
+                Toast.makeText(this, "Brak uprawnień", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        unregisterReceiver(NetworkReceiver);
     }
 }
