@@ -1,7 +1,7 @@
 # Bezpieczeństwo Aplikacji Mobilnych
 
-Politechnika Krakowska
-- Cyberbezpieczeństwo - Studia 2 stopnia
+## Cyberbezpieczeństwo - Studia 2 stopnia
+### Politechnika Krakowska
 
 - Laboratorium 1 (Niedokończone - Implementacja bazy danych)
 - Laboratorium 2 (Ukończone - Kod w repo niewymagany)
